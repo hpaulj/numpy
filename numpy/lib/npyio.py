@@ -1862,12 +1862,17 @@ def recfromcsv(fname, **kwargs):
     --------
     numpy.genfromtxt : generic function to load ASCII data.
 
+    Notes
+    -----
+    By default, `dtype` is None, which means that the data-type of the output
+    array will be determined from the data.
+
     """
     case_sensitive = kwargs.get('case_sensitive', "lower") or "lower"
     names = kwargs.get('names', True)
     if names is None:
         names = True
-    kwargs.update(dtype=kwargs.get('update', None),
+    kwargs.update(dtype=kwargs.get('dtype', None),
                   delimiter=kwargs.get('delimiter', ",") or ",",
                   names=names,
                   case_sensitive=case_sensitive)
