@@ -1869,13 +1869,18 @@ def recfromcsv(fname, **kwargs):
 
     """
     case_sensitive = kwargs.get('case_sensitive', "lower") or "lower"
-    names = kwargs.get('names', True)
-    if names is None:
-        names = True
-    kwargs.update(dtype=kwargs.get('dtype', None),
-                  delimiter=kwargs.get('delimiter', ",") or ",",
-                  names=names,
-                  case_sensitive=case_sensitive)
+    #names = kwargs.get('names', True)
+    #if names is None:
+    #    names = True
+    #kwargs.update(dtype=kwargs.get('dtype', None),
+    #              delimiter=kwargs.get('delimiter', ",") or ",",
+    #              names=names,
+    #              case_sensitive=case_sensitive)
+    kwargs.setdefault("case_sensitive", "lower")
+    kwargs.setdefault("names", True)
+    kwargs.setdefault("delimiter", ",")
+    kwargs.setdefault("dtype", None)
+
     usemask = kwargs.get("usemask", False)
     output = genfromtxt(fname, **kwargs)
     if usemask:
